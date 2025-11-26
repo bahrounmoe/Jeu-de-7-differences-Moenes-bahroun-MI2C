@@ -19,6 +19,45 @@
         <p class="pixel" style="margin-bottom: 30px; font-size: 16px;">Spot The 7 Diffrences !</p>
         <button class="start-btn pixel" onclick="showScreen('game-screen')">PLAY</button>
     </div>
+    <div id="help-screen" class="screen">
+        <h2 id="help-title" class="pixel">HOW TO PLAY</h2>
+        <ul id="instructions" class="pixel">
+            <li>Look at both images carefully.</li>
+            <li>Find the 7 differences between the two images.</li>
+            <li>Click on the differences to mark them.</li>
+            <li>You have a time limit of to find all differences.</li>
+            <li>Good luck and have fun!</li>
+        </ul>
+        <div id="warning" class="pixel">
+            WARNING !<br><br>There will be a score<br>at the end of the game.
+        </div>
+    </div>
+    <div id="game-screen" class="screen">
+        <div class="game-header">
+            <div class="game-info">
+                <div class="timer pixel">TIME: <span id="time">120</span>sec</div>
+                <div class="score pixel">Found: <span id="found">0</span>/7</div>
+            </div>
+        </div>
+        
+        <div class="game-container">
+            <div class="images-container">
+                <div class="image-wrapper">
+                    <img src="c:\Users\User\Desktop\html.css.js projects\aaaaaaaauuuuuuuu.png" alt="Image 1" id="image1">
+                    <div class="difference-area" id="diff-area-1"></div>
+                </div>
+                <div class="image-wrapper">
+                    <img src="c:\Users\User\Desktop\html.css.js projects\images\aaa8.jpg" alt="Image 2" id="image2">
+                    <div class="difference-area" id="diff-area-2"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button id="hint-btn" class="game-btn pixel">Hint</button>
+            <button id="reset-btn" class="game-btn pixel">Start Again</button>
+        </div>
+    </div>
 
 </body>
 </html>
