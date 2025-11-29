@@ -139,14 +139,16 @@
             color: rgb(221, 200, 255);
             text-shadow: 4px 4px 0px rgba(138, 106, 219, 0.793);
             margin-bottom: 0px;
-            margin-top:35px;
+            margin-top:40px;
         }
 
         #instructions {
             text-align: left;
-            margin: 30px 0;
+            margin: 15px;
             line-height: 2;
             font-size: 14px;
+            line-height: 1.3;
+            margin-top:20px;
         }
 
         #instructions li {
@@ -155,7 +157,7 @@
 
         #warning {
             background-color: rgba(255, 0, 0, 0.2);
-            padding: 20px;
+            padding: 10px;
             border-radius: 10px;
             border: 2px solid red;
             margin: 20px 0;
@@ -169,7 +171,7 @@
             margin: 10px 0;
             flex-shrink: 0;
         }
-        
+
         .game-info {
             display: flex;
             justify-content: center;
@@ -218,6 +220,7 @@
             height: 100%;
             object-fit: cover;
         }
+
         .difference-area {
             position: absolute;
             top: 0;
@@ -365,7 +368,8 @@
             background-color: rgba(176, 176, 204, 0.8);
             transform: scale(1.05);
         }
-                .level-selector {
+
+        .level-selector {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -402,44 +406,17 @@
             text-shadow:5px 5px 5px rgb(248, 126, 146);
             background-image:url("c:/Users/User/Downloads/Pink Cat Pattern.jpg");
             box-shadow:7px 7px 7px rgb(245, 121, 216) ;}
+
+        #messagediff {
+            font-size: 14px;
+            margin-top: 10px;
+            color: rgba(214, 237, 44, 0.87);
+            text-shadow: 2px 2px 4px rgb(0, 0, 0);
+        }
     </style>
-    <script>
-        const gameLevels = {
-            1: {
-                name: "Forest",
-                image1: "c:\\Users\\User\\Desktop\\html.css.js projects\\aaaaaaaauuuuuuuu.png",
-                image2: "c:\\Users\\User\\Desktop\\html.css.js projects\\images\\aaa8.jpg",
-                timeLimit: 120,
-                differences: [
-                    { x: 157, y: 46 },
-                    { x: 203, y: 217 },
-                    { x: 106, y: 193 },
-                    { x: 53, y: 93 },
-                    { x: 141, y: 94 },
-                    { x: 370, y: 280 },
-                    { x: 320, y: 124 }
-                ]
-            },
-            2: {
-                name: "Space",
-                image1: "c:/Users/User/Desktop/html.css.js projects/images/aaa1.jpg",
-                image2: "c:/Users/User/Desktop/html.css.js projects/images/aaa2.jpg",
-                timeLimit: 150,
-                differences: [
-                    { x: 85, y: 75 },
-                    { x: 320, y: 45 },
-                    { x: 180, y: 150 },
-                    { x: 250, y: 200 },
-                    { x: 120, y: 240 },
-                    { x: 350, y: 180 },
-                    { x: 50, y: 280 }
-                ]
-            }
-        };
-    </script>
 </head>
 <body>
-
+    <!-- Navigation -->
     <nav>
         <ul>
             <li><a href="#" class="nav-btn pixel" onclick="showScreen('home-screen')">Home</a></li>
@@ -447,12 +424,14 @@
         </ul>
     </nav>
 
+    <!-- Écran d'accueil -->
     <div id="home-screen" class="screen">
         <h1 class="title pixel">Jeu des 7 Différences</h1>
-        <p class="pixel" style="margin-bottom: 30px; font-size: 16px;">Spot The 7 Diffrences !</p>
+        <p class="pixel" style="margin-bottom: 30px; font-size: 16px;">Spot The Diffrences !</p>
         <button class="start-btn pixel" onclick="showScreen('level-select-screen')">PLAY</button>
     </div>
 
+    <!-- Écran de sélection de niveau -->
     <div id="level-select-screen" class="screen">
         <h2 class="title pixel">Select Level</h2>
         <div class="level-selector">
@@ -461,11 +440,14 @@
         </div>
     </div>
 
+    <!-- Écran d'aide -->
     <div id="help-screen" class="screen">
         <h2 id="help-title" class="pixel">HOW TO PLAY</h2>
         <ul id="instructions" class="pixel">
             <li>Look at both images carefully.</li>
-            <li>Find the 7 differences between the two images.</li>
+            <li>Find the differences between the two images.</li>
+            <li id="messagediff">Level 2: There is extra diffrences (7) and time is more limited (100sec)!</li>
+            <li id="messagediff">Level 2: There is extra diffrences (9) and time is more limited (60sec)!</li>
             <li>Click on the differences to mark them.</li>
             <li>You have a time limit to find all differences.</li>
             <li>Good luck and have fun!</li>
@@ -475,12 +457,13 @@
         </div>
     </div>
 
+    <!-- Écran du jeu -->
     <div id="game-screen" class="screen">
         <div class="game-header">
             <div class="game-info">
-                <div class="level pixel">LEVEL: <span id="current-level">1</span></div>
-                <div class="timer pixel">TIME: <span id="time">120</span>sec</div>
-                <div class="score pixel">Found: <span id="found">0</span>/7</div>
+                <div class="level pixel">LEVEL: <span id="current-level"></span></div>
+                <div class="timer pixel">TIME: <span id="time"></span>sec</div>
+                <div class="score pixel">Found: <span id="found">0</span></div>
             </div>
         </div>
         
@@ -504,6 +487,7 @@
         </div>
     </div>
 
+    <!-- Modal des résultats -->
     <div id="result-modal" class="modal">
         <div class="modal-content">
             <h2 class="pixel" id="result-title">End of game !</h2>
@@ -514,6 +498,99 @@
             <button id="main-menu" class="modal-btn pixel" onclick="showScreen('home-screen')">Home</button>
         </div>
     </div>
+
+    <script>
+        // Configuration des niveaux
+        const gameLevels = {
+            1: {
+                name: "robots",
+                image1: "c:\\Users\\User\\Desktop\\html.css.js projects\\aaaaaaaauuuuuuuu.png",
+                image2: "c:\\Users\\User\\Desktop\\html.css.js projects\\images\\aaa8.jpg",
+                timeLimit: 100,
+                differences: [
+                    { x: 157, y: 46 },
+                    { x: 203, y: 217 },
+                    { x: 106, y: 193 },
+                    { x: 53, y: 93 },
+                    { x: 141, y: 94 },
+                    { x: 370, y: 280 },
+                    { x: 320, y: 124 }
+                ]
+            },
+            2: {
+                name: "cats",
+                image1: "c:/Users/User/Desktop/html.css.js projects/images/aaa1.jpg",
+                image2: "c:/Users/User/Desktop/html.css.js projects/images/aaa2.jpg",
+                timeLimit: 60,
+                differences: [
+                    { x: 385, y: 285 },
+                    { x: 315, y: 250 },
+                    { x: 15, y: 285 },
+                    { x: 360, y: 100 },
+                    { x: 120, y: 70 },
+                    { x: 280, y: 180 },
+                    { x: 100, y: 130 },
+                    { x: 205, y: 70 },
+                    { x: 225, y: 150 }
+                ]
+            }
+        };
+
+        let gameState = {
+            currentLevel: 1,
+            foundDifferences: 0,
+            timeLeft: 0,
+            timer: null,
+            gameActive: true
+        };
+
+        const timeDisplay = document.getElementById('time');
+        const foundDisplay = document.getElementById('found');
+        const levelDisplay = document.getElementById('current-level');
+        const hintBtn = document.getElementById('hint-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const changeLevelBtn = document.getElementById('change-level-btn');
+        const resultModal = document.getElementById('result-modal');
+        const resultTitle = document.getElementById('result-title');
+        const resultMessage = document.getElementById('result-message');
+        const resultScore = document.getElementById('result-score');
+        const playAgainBtn = document.getElementById('play-again');
+        const nextLevelBtn = document.getElementById('next-level');
+        const image1 = document.getElementById('image1');
+        const image2 = document.getElementById('image2');
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            
+            document.getElementById(screenId).style.display = 'flex';
+        }
+
+        function startGame(level) {
+            gameState.currentLevel = level;
+            showScreen('game-screen');
+            initGame();
+        }
+
+        function initGame() {
+            const currentLevel = gameLevels[gameState.currentLevel];
+        
+            image1.src = currentLevel.image1;
+            image2.src = currentLevel.image2;
+            
+            gameState.foundDifferences = 0;
+            gameState.timeLeft = currentLevel.timeLimit;
+            gameState.gameActive = true;
+            
+            levelDisplay.textContent = gameState.currentLevel;
+            updateDisplay();
+            startTimer();
+            setupDifferenceAreas();
+            
+            resultModal.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
 
