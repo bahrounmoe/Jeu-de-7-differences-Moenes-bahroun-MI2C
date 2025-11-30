@@ -750,6 +750,31 @@
                 }
             }
         });
+        
+        resetBtn.addEventListener('click', () => {
+            clearInterval(gameState.timer);
+            initGame();
+        });
+
+        changeLevelBtn.addEventListener('click', () => {
+            clearInterval(gameState.timer);
+            showScreen('level-select-screen');
+        });
+
+        playAgainBtn.addEventListener('click', () => {
+            resultModal.style.display = 'none';
+            initGame();
+        });
+
+        nextLevelBtn.addEventListener('click', () => {
+            resultModal.style.display = 'none';
+            gameState.currentLevel++;
+            initGame();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showScreen('home-screen');
+        });
     </script>
 </body>
 </html>
