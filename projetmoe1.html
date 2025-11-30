@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="c:\Users\User\Desktop\html.css.js projects\images\téléchargement (3).jpg">
+    <link rel="icon" href="c:/Users/User/Desktop/projetmoe/Jeu-de-7-differences-Moenes-bahroun-MI2C/logo.jpg">
     <title>Spot The 7 Diffrences</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
@@ -20,7 +20,7 @@
         }
 
         body {
-            background-image: url("c:/Users/User/Desktop/html.css.js projects/aaaaaaaaaaaaaaaaaaaaa.gif");
+            background-image: url("c:/Users/User/Desktop/projetmoe/Jeu-de-7-differences-Moenes-bahroun-MI2C/background.gif");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -396,7 +396,7 @@
         }*/
         #level1:hover {
             transform: scale(1.05);
-            background-image:url("c:/Users/User/Downloads/téléchargement aa.jpg");
+            background-image:url("c:/Users/User/Desktop/projetmoe/Jeu-de-7-differences-Moenes-bahroun-MI2C/level1-robots.jpg");
             box-shadow:7px 7px 7px rgb(172, 250, 206) ;
             color:rgb(132, 252, 208);
             text-shadow:5px 5px 5px rgb(174, 252, 226);}
@@ -404,7 +404,7 @@
             transform: scale(1.05);
             color:rgb(88, 50, 67);
             text-shadow:5px 5px 5px rgb(248, 126, 146);
-            background-image:url("c:/Users/User/Downloads/Pink Cat Pattern.jpg");
+            background-image:url("c:/Users/User/Desktop/projetmoe/Jeu-de-7-differences-Moenes-bahroun-MI2C/level2-cats.jpg");
             box-shadow:7px 7px 7px rgb(245, 121, 216) ;}
 
         #messagediff {
@@ -416,7 +416,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <ul>
             <li><a href="#" class="nav-btn pixel" onclick="showScreen('home-screen')">Home</a></li>
@@ -424,14 +423,12 @@
         </ul>
     </nav>
 
-    <!-- Écran d'accueil -->
     <div id="home-screen" class="screen">
         <h1 class="title pixel">Jeu des 7 Différences</h1>
         <p class="pixel" style="margin-bottom: 30px; font-size: 16px;">Spot The Diffrences !</p>
         <button class="start-btn pixel" onclick="showScreen('level-select-screen')">PLAY</button>
     </div>
 
-    <!-- Écran de sélection de niveau -->
     <div id="level-select-screen" class="screen">
         <h2 class="title pixel">Select Level</h2>
         <div class="level-selector">
@@ -440,7 +437,6 @@
         </div>
     </div>
 
-    <!-- Écran d'aide -->
     <div id="help-screen" class="screen">
         <h2 id="help-title" class="pixel">HOW TO PLAY</h2>
         <ul id="instructions" class="pixel">
@@ -457,7 +453,6 @@
         </div>
     </div>
 
-    <!-- Écran du jeu -->
     <div id="game-screen" class="screen">
         <div class="game-header">
             <div class="game-info">
@@ -487,7 +482,6 @@
         </div>
     </div>
 
-    <!-- Modal des résultats -->
     <div id="result-modal" class="modal">
         <div class="modal-content">
             <h2 class="pixel" id="result-title">End of game !</h2>
@@ -500,12 +494,11 @@
     </div>
 
     <script>
-        // Configuration des niveaux
         const gameLevels = {
             1: {
                 name: "robots",
-                image1: "c:\\Users\\User\\Desktop\\html.css.js projects\\aaaaaaaauuuuuuuu.png",
-                image2: "c:\\Users\\User\\Desktop\\html.css.js projects\\images\\aaa8.jpg",
+                image1: "c:/Users/User/Desktop/projetmoe/Jeu-de-7-differences-Moenes-bahroun-MI2C/image1.jpg",
+                image2: "c:/Users/User/Desktop/projetmoe/Jeu-de-7-differences-Moenes-bahroun-MI2C/image2.png",
                 timeLimit: 100,
                 differences: [
                     { x: 157, y: 46 },
@@ -519,8 +512,8 @@
             },
             2: {
                 name: "cats",
-                image1: "c:/Users/User/Desktop/html.css.js projects/images/aaa1.jpg",
-                image2: "c:/Users/User/Desktop/html.css.js projects/images/aaa2.jpg",
+                image1: "c:/Users/User/Desktop/projetmoe/Jeu-de-7-differences-Moenes-bahroun-MI2C/image3.jpg",
+                image2: "c:/Users/User/Desktop/projetmoe/Jeu-de-7-differences-Moenes-bahroun-MI2C/image4.jpg",
                 timeLimit: 60,
                 differences: [
                     { x: 385, y: 285 },
