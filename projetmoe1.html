@@ -590,6 +590,166 @@
             
             resultModal.style.display = 'none';
         }
+        function setupDifferenceAreas() {
+            const diffArea1 = document.getElementById('diff-area-1');
+            const diffArea2 = document.getElementById('diff-area-2');
+            
+            diffArea1.innerHTML = '';
+            diffArea2.innerHTML = '';
+            
+            diffArea1.addEventListener('click', handleDifferenceClick);
+            diffArea2.addEventListener('click', handleDifferenceClick);
+        }
+
+        function handleDifferenceClick(event) {
+            if (!gameState.gameActive) return;
+            
+            const rect = event.currentTarget.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            
+            const differenceIndex = findDifferenceAt(x, y);
+            
+            if (differenceIndex !== -1 && !isDifferenceFound(differenceIndex)) {
+                markDifferenceFound(differenceIndex, x, y);
+                gameState.foundDifferences++;
+                updateDisplay();
+                
+                if (gameState.foundDifferences === gameLevels[gameState.currentLevel].differences.length) {
+                    endGame(true);
+                }
+            } else {
+                showErrorCross(x, y, event.currentTarget);
+            }
+        }
+
+        function showErrorCross(x, y, area) {
+            const errorCross = document.createElement('div');
+            errorCross.className = 'error-cross';
+            errorCross.style.left = x + 'px';
+            errorCross.style.top = y + 'px';
+            area.appendChild(errorCross);
+            
+            setTimeout(() => {
+                if (errorCross.parentNode) {
+                    errorCross.parentNode.removeChild(errorCross);
+                }
+            }, 2000);
+        }
+
+        function findDifferenceAt(x, y) {
+            const tolerance = 25;
+            const currentLevel = gameLevels[gameState.currentLevel];
+            
+            for (let i = 0; i < currentLevel.differences.length; i++) {
+                const diff = currentLevel.differences[i];
+                const distance = Math.sqrt(Math.pow(diff.x - x, 2) + Math.pow(diff.y - y, 2));
+                
+                if (distance <= tolerance && !isDifferenceFound(i)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        function isDifferenceFound(index) {
+            const markers = document.querySelectorAll('.difference-marker');
+            return Array.from(markers).some(marker => 
+                marker.getAttribute('data-index') == index
+            );
+        }
+
+        function markDifferenceFound(index, x, y) {
+            const diffAreas = document.querySelectorAll('.difference-area');
+            
+            diffAreas.forEach(area => {
+                const marker = document.createElement('div');
+                marker.className = 'difference-marker difference-found';
+                marker.style.left = x + 'px';
+                marker.style.top = y + 'px';
+                marker.setAttribute('data-index', index);
+                area.appendChild(marker);
+            });
+        }
+
+        function startTimer() {
+            clearInterval(gameState.timer);
+            gameState.timer = setInterval(() => {
+                if (gameState.gameActive) {
+                    gameState.timeLeft--;
+                    updateDisplay();
+                    
+                    if (gameState.timeLeft <= 0) {
+                        endGame(false);
+                    }
+                }
+            }, 1000);
+        }
+
+        function updateDisplay() {
+            timeDisplay.textContent = gameState.timeLeft;
+            foundDisplay.textContent = gameState.foundDifferences;
+        }
+
+        function endGame(isWin) {
+            gameState.gameActive = false;
+            clearInterval(gameState.timer);
+            
+            const score = calculateScore();
+            
+            if (isWin) {
+                resultTitle.textContent = 'Félicitations !';
+                resultMessage.textContent = `Vous avez trouvé les ${gameLevels[gameState.currentLevel].differences.length} différences !`;
+                
+                if (gameState.currentLevel < Object.keys(gameLevels).length) {
+                    nextLevelBtn.style.display = 'inline-block';
+                } else {
+                    nextLevelBtn.style.display = 'none';
+                }
+            } else {
+                resultTitle.textContent = 'Temps écoulé !';
+                resultMessage.textContent = `Vous avez trouvé ${gameState.foundDifferences} différences sur ${gameLevels[gameState.currentLevel].differences.length}.`;
+                nextLevelBtn.style.display = 'none';
+            }
+            
+            resultScore.textContent = `Score final: ${score}`;
+            resultModal.style.display = 'flex';
+        }
+
+        function calculateScore() {
+            const baseScore = gameState.foundDifferences * 100;
+            const timeBonus = Math.floor(gameState.timeLeft * 2);
+            return baseScore + timeBonus;
+        }
+
+        hintBtn.addEventListener('click', () => {
+            if (!gameState.gameActive) return;
+            
+            const currentLevel = gameLevels[gameState.currentLevel];
+            
+            for (let i = 0; i < currentLevel.differences.length; i++) {
+                if (!isDifferenceFound(i)) {
+                    const diff = currentLevel.differences[i];
+                    
+                    const diffAreas = document.querySelectorAll('.difference-area');
+                    diffAreas.forEach(area => {
+                        const hintMarker = document.createElement('div');
+                        hintMarker.className = 'difference-marker';
+                        hintMarker.style.left = diff.x + 'px';
+                        hintMarker.style.top = diff.y + 'px';
+                        hintMarker.style.animation = 'pulse 0.5s infinite';
+                        area.appendChild(hintMarker);
+                        
+                        setTimeout(() => {
+                            if (hintMarker.parentNode) {
+                                hintMarker.parentNode.removeChild(hintMarker);
+                            }
+                        }, 2000);
+                    });
+                    break;
+                }
+            }
+        });
     </script>
 </body>
 </html>
