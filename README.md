@@ -40,7 +40,8 @@ Spot The 7 Differences - Jeu des 7 Différences 🎮
 
 -Lien GitHub Pages
         
-        Jouer au jeu sur GitHub Pages
+        https://bahrounmoe.github.io/Jeu-de-7-differences-Moenes-bahroun-MI2C/
+        https://github.com/bahrounmoe/Jeu-de-7-differences-Moenes-bahroun-MI2C.git
 
 -Nouveautés Explorées
     -Apprentissages Techniques
